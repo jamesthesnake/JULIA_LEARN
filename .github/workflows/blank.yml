@@ -1,0 +1,157 @@
+name: CI
+
+on:
+  pull_request:
+    types: [synchronize, opened, reopened]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build Learn Julia
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        cabal: ["3.8"]
+        ghc: ["9.2.4"]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: julia/actions/setup@v2
+      name: Setup julia
+      with:
+        ghc-version: ${{ matrix.ghc }}
+        cabal-version: ${{ matrix.cabal }}
+
+    - uses: actions/cache@v3
+      name: Cache ~/.cabal/store
+      with:
+        path: ~/.cabal/store
+        key: ${{ runner.os }}-${{ matrix.ghc }}-cabal
+
+    - name: Build
+      run: |
+        cabal v2-build --enable-tests --enable-benchmarks
+  chapter1:
+    name: Chapter One
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        cabal: ["3.8"]
+        ghc: ["9.2.4"]
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: julia/actions/setup@v2
+      name: Setup julia
+      with:
+        ghc-version: ${{ matrix.ghc }}
+        cabal-version: ${{ matrix.cabal }}
+
+    - uses: actions/cache@v3
+      name: Cache ~/.cabal/store
+      with:
+        path: ~/.cabal/store
+        key: ${{ runner.os }}-${{ matrix.ghc }}-cabal
+
+    - name: Chapter 1 - Doctest
+      run: |
+        cabal v2-test doctest-chapter1 --enable-tests --test-show-details=direct
+    - name: Chapter 1 - Tests
+      run: |
+        cabal run learn4julia-test --enable-tests -- -m "Chapter1Normal"
+    - name: Chapter 1 - Tests - Advanced
+      continue-on-error: true
+      run: |
+        cabal run learn4julia-test --enable-tests -- -m "Chapter1Advanced"
+  chapter2:
+    name: Chapter Two
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        cabal: ["3.8"]
+        ghc: ["9.2.4"]
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: julia/actions/setup@v2
+      name: Setup julia
+      with:
+        ghc-version: ${{ matrix.ghc }}
+        cabal-version: ${{ matrix.cabal }}
+
+    - uses: actions/cache@v3
+      name: Cache ~/.cabal/store
+      with:
+        path: ~/.cabal/store
+        key: ${{ runner.os }}-${{ matrix.ghc }}-cabal
+
+    - name: Chapter 2 - Doctest
+      run: |
+        cabal v2-test doctest-chapter2 --enable-tests --test-show-details=direct
+    - name: Chapter 2 - Tests
+      run: |
+        cabal run learn4julia-test --enable-tests -- -m "Chapter2Normal"
+    - name: Chapter 2 - Tests - Advanced
+      continue-on-error: true
+      run: |
+        cabal run learn4julia-test --enable-tests -- -m "Chapter2Advanced"
+  chapter3:
+    name: Chapter Three
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        cabal: ["3.8"]
+        ghc: ["9.2.4"]
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: julia/actions/setup@v2
+      name: Setup Julia
+      with:
+        ghc-version: ${{ matrix.ghc }}
+        cabal-version: ${{ matrix.cabal }}
+
+    - uses: actions/cache@v3
+      name: Cache ~/.cabal/store
+      with:
+        path: ~/.cabal/store
+        key: ${{ runner.os }}-${{ matrix.ghc }}-cabal
+
+    - name: Chapter 3 - Doctest
+      run: |
+        cabal v2-test doctest-chapter3 --enable-tests --test-show-details=direct
+  chapter4:
+    name: Chapter Four
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        cabal: ["3.8"]
+        ghc: ["9.2.4"]
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: julia/actions/setup@v2
+      name: Setup Julia
+      with:
+        ghc-version: ${{ matrix.ghc }}
+        cabal-version: ${{ matrix.cabal }}
+
+    - uses: actions/cache@v3
+      name: Cache ~/.cabal/store
+      with:
+        path: ~/.cabal/store
+        key: ${{ runner.os }}-${{ matrix.ghc }}-cabal
+
+    - name: Chapter 4 - Doctest
+      run: |
+        cabal v2-test doctest-chapter4 --enable-tests --test-show-details=direct
+    - name: Chapter 4 - Tests
+      run: |
+        cabal run learn4julia-test --enable-tests -- -m "Chapter4Normal"
+    - name: Chapter 4 - Tests - Advanced
+      continue-on-error: true
+      run: |
+        cabal run learn4julia-test --enable-tests -- -m "Chapter4Advanced"
