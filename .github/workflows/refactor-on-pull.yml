@@ -1,0 +1,17 @@
+name: Refactor on Pull Request
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  refactor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run refactoring action
+        uses: ./.github/actions/refactor-action
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
