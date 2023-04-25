@@ -10,4 +10,4 @@ runs:
     - run: python refactor.py
       shell: bash
       env:
-        GITHUB_TOKEN: ${{ inputs.token }}
+        GITHUB_TOKEN: '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'
