@@ -1,1 +1,13 @@
-here
+name: 'Refactor Code'
+description: 'Automatically refactor code on pull requests'
+inputs:
+  token:
+    description: 'GitHub token'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - run: python refactor.py
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ inputs.token }}
