@@ -14,4 +14,4 @@ jobs:
       - name: Run refactoring action
         uses: ./.github/actions/refactor-action
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: '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'
