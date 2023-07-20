@@ -1,0 +1,28 @@
+name: Julia Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Set up Julia
+      uses: julia-actions/setup-julia@v1
+      with:
+        version: "1.6" # Replace with your desired Julia version
+
+    - name: Check out the code
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: julia -e 'using Pkg; Pkg.instantiate();'
+
+    - name: Run tests
+      run: julia test.jl
