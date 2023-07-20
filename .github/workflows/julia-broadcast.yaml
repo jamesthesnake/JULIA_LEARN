@@ -25,4 +25,4 @@ jobs:
       run: julia -e 'using Pkg; Pkg.instantiate();'
 
     - name: Run tests
-      run: julia test.jl
+      run: julia broadcast.jl
