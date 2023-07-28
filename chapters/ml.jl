@@ -20,11 +20,11 @@ optimizer = ADAM(0.01)
 
 # Train the model
 for i in 1:10
-  Flux.train!(loss, Flux.params(model), [(x_train, y_train)], optimizer)
+  #put correct Flux function here 
 end
 
 # Generate dummy test data
-x_test = rand(Float32, 784, 100)
+x_test = rand(Float32, #fill in, #fill in)
 y_test = onehotbatch(rand(1:10, 100), 1:10)
 
 # Evaluate the model
