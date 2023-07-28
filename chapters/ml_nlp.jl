@@ -17,10 +17,7 @@ model = Chain(
 
 # Load and preprocess the MNIST dataset
 train_data, test_data = Flux.Data.MNIST.traindata()
-x_train = Flux.Data.MNIST.images(train_data) |> Flux.Data.DataLoader
-y_train = Flux.Data.MNIST.labels(train_data) |> Flux.Data.onehotbatch
-x_test = Flux.Data.MNIST.images(test_data) |> Flux.Data.DataLoader
-y_test = Flux.Data.MNIST.labels(test_data) |> Flux.Data.onehotbatch
+#train and test the images and labels using Data Loader and hot batches.
 
 # Define the loss function
 loss(x, y) = crossentropy(model(x), y)
