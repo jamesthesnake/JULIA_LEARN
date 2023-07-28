@@ -12,11 +12,11 @@ end
 # Main program
 function main()
     println("Enter the elements of the first array (space-separated):")
-    input1 = readline()
+    input1 = #test here
     arr1 = parse.(Int, split(input1))
 
     println("Enter the elements of the second array (space-separated):")
-    input2 = readline()
+    input2 = #test here
     arr2 = parse.(Int, split(input2))
 
     try
