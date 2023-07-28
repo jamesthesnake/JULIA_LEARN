@@ -14,6 +14,7 @@ model = Chain(
     softmax,
 )
 
+
 # Load and preprocess the MNIST dataset
 train_data, test_data = Flux.Data.MNIST.traindata()
 x_train = Flux.Data.MNIST.images(train_data) |> Flux.Data.DataLoader
