@@ -2,7 +2,7 @@ using DifferentialEquations
 
 # Define the differential equation
 function example_diffeq!(du, u, p, t)
-    du[1] = -0.5 * u[1]
+    du[1] = # fill in here!
 end
 
 # Set the initial condition
